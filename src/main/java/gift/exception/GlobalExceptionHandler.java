@@ -29,4 +29,11 @@ public class GlobalExceptionHandler {
         problemDetail.setProperties(new HashMap<>(reasons));
         return problemDetail;
     }
+
+    @ExceptionHandler(AlreadyExistMemberException.class)
+    public ProblemDetail handleAlreadyExistMemberException(AlreadyExistMemberException alreadyExistMemberException) {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problemDetail.setDetail(alreadyExistMemberException.getMessage());
+        return problemDetail;
+    }
 }
